@@ -19,7 +19,10 @@ function App() {
       <h1>João e Lucas Resolvendo o Desafio de OAuth Do Google e Microsoft</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          Via Microsoft
+        </button>
+        <button onClick={() => setCount((count) => count + 1)}>
+          Via Google
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
