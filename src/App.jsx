@@ -2,9 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import {microsoftOAuth, googleOAuth} from './OAuthFunctions/oauthFunction';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [microsoftRefreshToken, setMicrosoftRefreshToken] = useState();
+  const [googleRefreshToken, setGoogleRefreshToken] = useState();
 
   return (
     <>
@@ -18,14 +21,18 @@ function App() {
       </div>
       <h1>João e Lucas Resolvendo o Desafio de OAuth Do Google e Microsoft</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={microsoftOAuth}>
           Via Microsoft
         </button>
-        <button onClick={() => setCount((count) => count + 1)}>
+
+        <button onClick={() => setGoogleRefreshToken(googleOAuth())}>
           Via Google
         </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          {googleRefreshToken}
+        </p>
+        <p>
+          {microsoftRefreshToken}
         </p>
       </div>
       <p className="read-the-docs">
