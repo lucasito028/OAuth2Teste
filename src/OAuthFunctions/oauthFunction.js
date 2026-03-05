@@ -1,8 +1,8 @@
 export const microsoftOAuth = () => {
 
-  const clientId = "168bff34-25c9-4335-bcf9-92879ef13f9c";
+  const clientId = "111ff3c6-c3d0-4e0e-a67d-4e102c3c023a";
 
-  const redirectUri = "http://localhost:5173/callback";
+  const redirectUri = "https://o-auth2-teste.vercel.app/callback";
 
   const scope = "offline_access calendars.readwrite calendars.readwrite.shared onlinemeetings.readwrite";
 
