@@ -1,6 +1,6 @@
 export const microsoftOAuth = () => {
 
-  const clientId = "c199550a-c8de-4a0f-b773-33c0863d1d22";
+  const clientId = "168bff34-25c9-4335-bcf9-92879ef13f9c";
 
   const redirectUri = "http://localhost:5173/callback";
 
