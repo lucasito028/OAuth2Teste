@@ -8,6 +8,7 @@ function Home() {
 
   const [microsoftRefreshToken, setMicrosoftRefreshToken] = useState();
   const [googleRefreshToken, setGoogleRefreshToken] = useState();
+  const [loading, setLoading] = useState(false);
 
   const { instance, accounts } = useMsal();
 
@@ -50,6 +51,7 @@ function Home() {
     const code = new URLSearchParams(window.location.search).get("code");
 
     if (code) {
+      console.log(code);
       setLoading(true);
 
       fetch("https://server-test-two-delta.vercel.app/api/auth/google", {
