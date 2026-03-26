@@ -30,9 +30,53 @@ function Home() {
     });
 
     window.location.href =`https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
-};
+  };
 
-  // 👇 AQUI É O PONTO CHAVE
+  const googlelogin = () => {
+    const params = new URLSearchParams({
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      response_type: "code",
+      scope: "openid email profile https://www.googleapis.com/auth/calendar",
+      access_type: "offline",
+      prompt: "consent"
+    });
+
+    window.location.href =
+      `https://accounts.google.com/o/oauth2/v2/auth?${params}`;
+  };
+
+  useEffect(() => {
+    const code = new URLSearchParams(window.location.search).get("code");
+
+    if (code) {
+      setLoading(true);
+
+      fetch("https://server-test-two-delta.vercel.app/api/auth/google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ code }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log("REFRESH TOKEN:", data.refresh_token);
+          alert("Refresh Token: " + data.refresh_token);
+
+          // limpa a URL (remove ?code=...)
+          window.history.replaceState({}, document.title, "/");
+        })
+        .catch(() => {
+          alert("Erro ao autenticar");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, []);
+  
+  /*
   useEffect(() => {
     if (accounts.length > 0) {
       instance.acquireTokenSilent({
@@ -51,6 +95,7 @@ function Home() {
       });
     }
   }, [accounts]);
+  */
 
   return (
     <>
@@ -72,7 +117,7 @@ function Home() {
           Login com Microsoft
         </button>
 
-        <button onClick={() => setGoogleRefreshToken(googleOAuth())}>
+        <button onClick={googlelogin}>
           Via Google
         </button>
 
