@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './../assets/react.svg'
 import viteLogo from './../../public/vite.svg'
 import './../App.css'
@@ -9,7 +9,7 @@ function Home() {
   const [microsoftRefreshToken, setMicrosoftRefreshToken] = useState();
   const [googleRefreshToken, setGoogleRefreshToken] = useState();
 
-  const { instance } = useMsal();
+  const { instance, accounts } = useMsal();
 
   const loginRequest = {
     scopes: [
@@ -23,6 +23,26 @@ function Home() {
   const microsoftLogin = () => {
     instance.loginRedirect(loginRequest);
   };
+
+  // 👇 AQUI É O PONTO CHAVE
+  useEffect(() => {
+    if (accounts.length > 0) {
+      instance.acquireTokenSilent({
+        scopes: loginRequest.scopes,
+        account: accounts[0],
+      })
+      .then((response) => {
+        console.log("Response completo:", response);
+
+        // ⚠️ aqui você NÃO tem refresh_token
+        // mas pode salvar o access_token
+        setMicrosoftRefreshToken(response.accessToken);
+      })
+      .catch((err) => {
+        console.error("Erro ao pegar token:", err);
+      });
+    }
+  }, [accounts]);
 
   return (
     <>
