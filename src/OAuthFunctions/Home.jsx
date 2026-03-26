@@ -34,8 +34,8 @@ function Home() {
 
   const googlelogin = () => {
     const params = new URLSearchParams({
-      client_id: clientId,
-      redirect_uri: redirectUri,
+      client_id: "43713430205-qvkh4v6e4t86pb4qvp2435t6vjahvffo.apps.googleusercontent.com",
+      redirect_uri: "https://o-auth2-teste.vercel.app/",
       response_type: "code",
       scope: "openid email profile https://www.googleapis.com/auth/calendar",
       access_type: "offline",
