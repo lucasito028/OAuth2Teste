@@ -49,9 +49,9 @@ function Home() {
 
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get("code");
-
+    window.history.replaceState({}, document.title, window.location.pathname);
+    
     if (code) {
-      console.log(code);
       setLoading(true);
 
       fetch("https://server-test-two-delta.vercel.app/api/auth/google", {
