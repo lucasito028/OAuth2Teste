@@ -54,7 +54,7 @@ function Home() {
     if (code) {
       setLoading(true);
 
-      fetch("https://server-test-two-delta.vercel.app/api/auth/google", {
+      fetch("https://server-test-two-delta.vercel.app/api/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
