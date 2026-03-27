@@ -10,19 +10,6 @@ function Home() {
   const [microsoftRefreshToken, setMicrosoftRefreshToken] = useState();
   const [googleRefreshToken, setGoogleRefreshToken] = useState();
 
-  const [loading, setLoading] = useState(false);
-
-  const { instance, accounts } = useMsal();
-
-  const loginRequest = {
-    scopes: [
-      "offline_access",
-      "Calendars.ReadWrite",
-      "Calendars.ReadWrite.Shared",
-      "OnlineMeetings.ReadWrite"
-    ]
-  };
-
   const microsoftLogin = () => {
     const params = new URLSearchParams({
       client_id: "111ff3c6-c3d0-4e0e-a67d-4e102c3c023a",
@@ -52,6 +39,16 @@ function Home() {
     onError: (err) => console.log(err)
   });
 
+  const cognitoLogin = () => {
+    const params = new URLSearchParams({
+      client_id: "7fm1rgcakd2hmede4qphctqfr0",
+      response_type: "code",
+      scope: "openid email profile",
+      redirect_uri: "https://o-auth2-teste.vercel.app"
+    });
+
+    window.location.href ="https://7fm1rgcakd2hmede4qphctqfr0.auth.us-east-1.amazoncognito.com/oauth2/authorize?" + params;
+  };
   return (
     <>
       <div>
@@ -74,6 +71,10 @@ function Home() {
 
         <button onClick={googlelogin}>
           Via Google
+        </button>
+
+        <button onClick={cognitoLogin}>
+          Via Google Cognito
         </button>
 
         <p>{googleRefreshToken}</p>
