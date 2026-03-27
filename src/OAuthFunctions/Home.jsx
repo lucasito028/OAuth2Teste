@@ -43,7 +43,7 @@ function Home() {
   const params = new URLSearchParams({
     client_id: "7fm1rgcakd2hmede4qphctqfr0",
     response_type: "code",
-    scope: "openid email profile",
+    scope: "email",
     redirect_uri: "https://o-auth2-teste.vercel.app"
   });
 
