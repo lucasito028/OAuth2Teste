@@ -9,7 +9,7 @@ function Home() {
 
   const [microsoftRefreshToken, setMicrosoftRefreshToken] = useState();
   const [googleRefreshToken, setGoogleRefreshToken] = useState();
-  /*
+
   const [loading, setLoading] = useState(false);
 
   const { instance, accounts } = useMsal();
@@ -34,7 +34,7 @@ function Home() {
 
     window.location.href =`https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
   };
-  */
+  
   
   const googlelogin = useGoogleLogin({
     flow: 'auth-code',
