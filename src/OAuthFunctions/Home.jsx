@@ -49,6 +49,7 @@ function Home() {
 
     window.location.href ="https://7fm1rgcakd2hmede4qphctqfr0.auth.us-east-1.amazoncognito.com/oauth2/authorize?" + params;
   };
+  
   return (
     <>
       <div>
