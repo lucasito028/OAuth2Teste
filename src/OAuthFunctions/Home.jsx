@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import reactLogo from './../assets/react.svg'
 import viteLogo from './../../public/vite.svg'
 import './../App.css'
 import { useMsal } from "@azure/msal-react";
+import { useGoogleLogin } from '@react-oauth/google';
 
 function Home() {
 
   const [microsoftRefreshToken, setMicrosoftRefreshToken] = useState();
   const [googleRefreshToken, setGoogleRefreshToken] = useState();
+  /*
   const [loading, setLoading] = useState(false);
 
   const { instance, accounts } = useMsal();
@@ -32,72 +34,24 @@ function Home() {
 
     window.location.href =`https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
   };
-
-  const googlelogin = () => {
-    const params = new URLSearchParams({
-      client_id: "43713430205-qvkh4v6e4t86pb4qvp2435t6vjahvffo.apps.googleusercontent.com",
-      redirect_uri: "https://o-auth2-teste.vercel.app",
-      response_type: "code",
-      scope: "openid email profile https://www.googleapis.com/auth/calendar",
-      access_type: "offline",
-      prompt: "consent"
-    });
-
-    window.location.href =
-      `https://accounts.google.com/o/oauth2/v2/auth?${params}`;
-  };
-
-  useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get("code");
-    window.history.replaceState({}, document.title, window.location.pathname);
-    
-    if (code) {
-      setLoading(true);
-
-      fetch("https://server-test-two-delta.vercel.app/api/google", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ code }),
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log("REFRESH TOKEN:", data.refresh_token);
-          alert("Refresh Token: " + data.refresh_token);
-
-          // limpa a URL (remove ?code=...)
-          window.history.replaceState({}, document.title, "/");
-        })
-        .catch(() => {
-          alert("Erro ao autenticar");
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  }, []);
-  
-  /*
-  useEffect(() => {
-    if (accounts.length > 0) {
-      instance.acquireTokenSilent({
-        scopes: loginRequest.scopes,
-        account: accounts[0],
-      })
-      .then((response) => {
-        console.log("Response completo:", response);
-
-        // ⚠️ aqui você NÃO tem refresh_token
-        // mas pode salvar o access_token
-        setMicrosoftRefreshToken(response.accessToken);
-      })
-      .catch((err) => {
-        console.error("Erro ao pegar token:", err);
-      });
-    }
-  }, [accounts]);
   */
+  
+  const googlelogin = useGoogleLogin({
+    flow: 'auth-code',
+    scope: 'openid email profile https://www.googleapis.com/auth/calendar',
+    onSuccess: async (codeResponse) => {
+
+      const res = await axios.post(
+        'https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/hello',
+        {
+          code: codeResponse.code,
+        }
+      );
+
+      console.log("REFRESH TOKEN:", res);
+    },
+    onError: (err) => console.log(err)
+  });
 
   return (
     <>

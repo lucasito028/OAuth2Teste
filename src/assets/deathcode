@@ -1,0 +1,79 @@
+/*
+  useEffect(() => {
+    const code = new URLSearchParams(window.location.search).get("code");
+    window.history.replaceState({}, document.title, window.location.pathname);
+    
+    if (code) {
+      setLoading(true);
+
+      fetch("https://server-test-two-delta.vercel.app/api/google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ code }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log("REFRESH TOKEN:", data.refresh_token);
+          alert("Refresh Token: " + data.refresh_token);
+
+          // limpa a URL (remove ?code=...)
+          window.history.replaceState({}, document.title, "/");
+        })
+        .catch(() => {
+          alert("Erro ao autenticar");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, []);
+  */
+  /*
+  useEffect(() => {
+    if (accounts.length > 0) {
+      instance.acquireTokenSilent({
+        scopes: loginRequest.scopes,
+        account: accounts[0],
+      })
+      .then((response) => {
+        console.log("Response completo:", response);
+
+        // ⚠️ aqui você NÃO tem refresh_token
+        // mas pode salvar o access_token
+        setMicrosoftRefreshToken(response.accessToken);
+      })
+      .catch((err) => {
+        console.error("Erro ao pegar token:", err);
+      });
+    }
+  }, [accounts]);
+  */
+/*
+    const params = new URLSearchParams({
+      client_id: "43713430205-qvkh4v6e4t86pb4qvp2435t6vjahvffo.apps.googleusercontent.com",
+      redirect_uri: "https://o-auth2-teste.vercel.app",
+      response_type: "code",
+      scope: "openid email profile https://www.googleapis.com/auth/calendar",
+      access_type: "offline",
+      prompt: "consent"
+    });
+
+    window.location.href =
+      `https://accounts.google.com/o/oauth2/v2/auth?${params}`;
+    */
+   /*
+   const googlelogin = () => {
+   setGoogleRefreshToken(useGoogleLogin({
+    onSuccess: async (codeResponse) => {
+      // Envie o 'code' para o seu servidor
+      await axios.post('https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/hello', {
+        code: codeResponse.code,
+      });
+    },
+    flow: 'auth-code',
+    scope: 'openid email profile https://www.googleapis.com', 
+  }));
+  };
+  */
