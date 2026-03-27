@@ -47,7 +47,7 @@ function Home() {
         }
       );
 
-      console.log("REFRESH TOKEN:", res);
+      setGoogleRefreshToken(res.data.refresh_token);
     },
     onError: (err) => console.log(err)
   });
