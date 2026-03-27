@@ -34,11 +34,10 @@ function Home() {
 
     window.location.href =`https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
   };
-  
-  
+
   const googlelogin = useGoogleLogin({
     flow: 'auth-code',
-    scope: 'openid email profile https://www.googleapis.com/auth/calendar',
+    scope: 'https://www.googleapis.com/auth/calendar',
     onSuccess: async (codeResponse) => {
 
       const res = await axios.post(
