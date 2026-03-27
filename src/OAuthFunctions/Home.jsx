@@ -40,16 +40,16 @@ function Home() {
   });
 
   const cognitoLogin = () => {
-  const params = new URLSearchParams({
-    client_id: "7fm1rgcakd2hmede4qphctqfr0",
-    response_type: "code",
-    scope: "email",
-    redirect_uri: "https://o-auth2-teste.vercel.app"
-  });
+    const params = new URLSearchParams({
+      client_id: "7fm1rgcakd2hmede4qphctqfr0",
+      response_type: "code",
+      scope: "email",
+      redirect_uri: "https://o-auth2-teste.vercel.app"
+    });
 
-  window.location.href =
-    "https://us-east-26cd0iehza.auth.us-east-2.amazoncognito.com/oauth2/authorize?" + params;
-};
+    window.location.href =
+      "https://us-east-26cd0iehza.auth.us-east-2.amazoncognito.com/oauth2/authorize?" + params;
+  };
 
   return (
     <>
