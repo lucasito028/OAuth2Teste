@@ -37,7 +37,7 @@ function Home() {
 
   const googlelogin = useGoogleLogin({
     flow: 'auth-code',
-    scope: 'email',
+    scope: 'https://www.googleapis.com/auth/calendar',
     onSuccess: async (codeResponse) => {
 
       const res = await axios.post(
