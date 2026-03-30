@@ -2,7 +2,6 @@ import { useState, useEffect  } from 'react'
 import reactLogo from './../assets/react.svg'
 import viteLogo from './../../public/vite.svg'
 import './../App.css'
-import { useMsal } from "@azure/msal-react";
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
