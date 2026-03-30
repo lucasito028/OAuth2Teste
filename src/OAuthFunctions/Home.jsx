@@ -42,7 +42,7 @@ function Home() {
     const params = new URLSearchParams({
       client_id: "3gb6efosjnfch6u8in6ds26nfu",
       response_type: "code",
-      scope: "email",
+      scope: "email, name",
       redirect_uri: "https://o-auth2-teste.vercel.app",
       state: "cognito"
     });
