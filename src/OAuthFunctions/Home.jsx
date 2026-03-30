@@ -40,7 +40,7 @@ function Home() {
 
   const cognitoLogin = () => {
     const params = new URLSearchParams({
-      client_id: "7fm1rgcakd2hmede4qphctqfr0",
+      client_id: "3gb6efosjnfch6u8in6ds26nfu",
       response_type: "code",
       scope: "email",
       redirect_uri: "https://o-auth2-teste.vercel.app",
@@ -48,7 +48,7 @@ function Home() {
     });
 
     window.location.href =
-      "https://us-east-26cd0iehza.auth.us-east-2.amazoncognito.com/oauth2/authorize?" + params;
+      "https://us-east-1eif0fnemv.auth.us-east-1.amazoncognito.com/oauth2/authorize?" + params;
   };
 
   useEffect(() => {
