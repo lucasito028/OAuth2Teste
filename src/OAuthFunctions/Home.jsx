@@ -90,7 +90,10 @@ function Home() {
       if (state === "microsoft") {
         const res = await axios.post(
           'https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/microsoft',
-          { code }
+          {
+            code: code,
+            code_verifier: codeVerifier
+          }
         );
 
         setMicrosoftRefreshToken(res.data.refresh_token); 
