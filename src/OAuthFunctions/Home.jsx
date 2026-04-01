@@ -84,8 +84,6 @@ function Home() {
     const state = params.get("state");
 
     if (code) {
-      console.log(state);
-
       /*
       if (state === "cognito") {
         alert("Código do Cognito: " + code);
@@ -94,9 +92,10 @@ function Home() {
 
       if (state === "microsoft") {
         alert("Código do Microsoft: " + code);
-        window.history.replaceState({}, document.title, window.location.pathname);
+        
       }
     }
+    window.history.replaceState({}, document.title, window.location.pathname);
   }, []);
   
 
