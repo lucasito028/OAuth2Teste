@@ -45,8 +45,7 @@ function Home() {
       code_challenge_method: "S256"
     });
 
-    window.location.href =
-      `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
+    window.location.href =`https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
   };
 
   const googlelogin = useGoogleLogin({
@@ -85,17 +84,21 @@ function Home() {
     const state = params.get("state");
 
     if (code) {
-      console.log("Code recebido:", code);
+      //console.log("Code recebido:", code);
 
+      /*
       if (state === "cognito") {
         alert("Código do Cognito: " + code);
       }
+      */
 
       if (state === "microsoft") {
         alert("Código do Microsoft: " + code);
+        window.history.replaceState({}, document.title, window.location.pathname);
       }
     }
   }, []);
+  
 
   return (
     <>
