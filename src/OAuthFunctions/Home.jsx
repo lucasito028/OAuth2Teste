@@ -84,7 +84,7 @@ function Home() {
     const state = params.get("state");
 
     if (code) {
-      //console.log("Code recebido:", code);
+      console.log(state);
 
       /*
       if (state === "cognito") {
