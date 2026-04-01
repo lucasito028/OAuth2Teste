@@ -86,6 +86,8 @@ function Home() {
 
     window.history.replaceState({}, document.title, window.location.pathname);
 
+    const codeVerifier = localStorage.getItem("code_verifier");
+
     if (code) {
       if (state === "microsoft") {
         const res = await axios.post(
