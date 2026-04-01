@@ -9,18 +9,36 @@ function Home() {
   const [microsoftRefreshToken, setMicrosoftRefreshToken] = useState();
   const [googleRefreshToken, setGoogleRefreshToken] = useState();
 
-  const microsoftLogin = () => {
+  const sha256 = async (plain) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(plain);
+    const hash = await crypto.subtle.digest('SHA-256', data);
+    return btoa(String.fromCharCode(...new Uint8Array(hash)))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '');
+  };
+
+  const microsoftLogin = async () => {
+    const codeVerifier = generateRandomString(128);
+    const codeChallenge = await sha256(codeVerifier);
+
+    localStorage.setItem("code_verifier", codeVerifier);
+
     const params = new URLSearchParams({
       client_id: "111ff3c6-c3d0-4e0e-a67d-4e102c3c023a",
       response_type: "code",
       redirect_uri: "https://o-auth2-teste.vercel.app",
       response_mode: "query",
       scope: "offline_access Calendars.ReadWrite Calendars.ReadWrite.Shared OnlineMeetings.ReadWrite",
-      state: "microsoft" 
+      state: "microsoft",
+      code_challenge: codeChallenge,
+      code_challenge_method: "S256"
     });
 
-    window.location.href = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
-};
+    window.location.href =
+      `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
+  };
 
   const googlelogin = useGoogleLogin({
     flow: 'auth-code',
