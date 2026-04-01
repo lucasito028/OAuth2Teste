@@ -15,11 +15,12 @@ function Home() {
       response_type: "code",
       redirect_uri: "https://o-auth2-teste.vercel.app",
       response_mode: "query",
-      scope: "offline_access Calendars.ReadWrite Calendars.ReadWrite.Shared OnlineMeetings.ReadWrite"
+      scope: "offline_access Calendars.ReadWrite Calendars.ReadWrite.Shared OnlineMeetings.ReadWrite",
+      state: "microsoft" 
     });
 
-    window.location.href =`https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
-  };
+    window.location.href = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?${params}`;
+};
 
   const googlelogin = useGoogleLogin({
     flow: 'auth-code',
@@ -60,10 +61,15 @@ function Home() {
       console.log("Code recebido:", code);
 
       if (state === "cognito") {
-        alert("Código do Cognito:", code);
+        alert("Código do Cognito: " + code);
+      }
+
+      if (state === "microsoft") {
+        alert("Código do Microsoft: " + code);
       }
     }
   }, []);
+
   return (
     <>
       <div>
