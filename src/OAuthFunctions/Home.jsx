@@ -78,29 +78,27 @@ function Home() {
       "https://us-east-1eif0fnemv.auth.us-east-1.amazoncognito.com/oauth2/authorize?" + params;
   };
 
-  useEffect(async () => {
+  useEffect(() => {
+  const handleAuth = async () => {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
     const state = params.get("state");
+
     window.history.replaceState({}, document.title, window.location.pathname);
 
     if (code) {
-      /*
-      if (state === "cognito") {
-        alert("Código do Cognito: " + code);
-      }
-      */
-
       if (state === "microsoft") {
-        //alert("Código do Microsoft: " + code);
-
-        const res = await axios.post('https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/microsoft',{
-          code: code}
+        const res = await axios.post(
+          'https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/microsoft',
+          { code }
         );
 
-      setGoogleRefreshToken(res.data.refresh_token);
+        setMicrosoftRefreshToken(res.data.refresh_token); 
       }
     }
+  };
+
+  handleAuth();
   }, []);
   
 
