@@ -94,11 +94,9 @@ function Home() {
       if (state === "microsoft") {
         //alert("Código do Microsoft: " + code);
 
-        const res = await axios.post('https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/microsoft',
-        {
-          code: code,
-        }
-      );
+        const res = await axios.post('https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/microsoft',{
+          code: code}
+        );
 
       setGoogleRefreshToken(res.data.refresh_token);
       }
