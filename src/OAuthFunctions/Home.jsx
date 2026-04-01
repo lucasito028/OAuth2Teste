@@ -82,7 +82,8 @@ function Home() {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
     const state = params.get("state");
-
+    window.history.replaceState({}, document.title, window.location.pathname);
+    
     if (code) {
       /*
       if (state === "cognito") {
@@ -95,7 +96,6 @@ function Home() {
         
       }
     }
-    window.history.replaceState({}, document.title, window.location.pathname);
   }, []);
   
 
