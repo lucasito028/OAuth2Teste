@@ -68,14 +68,14 @@ function Home() {
   const cognitoLogin = () => {
     const params = new URLSearchParams({
       identity_provider: "Google",
-      client_id: "93qhhgue5s284glfjukfn0n20",
+      client_id: "7aqrmg5phihr9d086i7anbtpc5",
       response_type: "code",
       scope: "openid email",
       redirect_uri: "https://o-auth2-teste.vercel.app",
       state: "cognito"
     });
 
-    window.location.href ="https://us-east-1eif0fnemv.auth.us-east-1.amazoncognito.com/oauth2/authorize?" + params;
+    window.location.href ="https://us-east-1qv8pcwiwm.auth.us-east-1.amazoncognito.com/oauth2/authorize?" + params;
   };
 
   useEffect(() => {
