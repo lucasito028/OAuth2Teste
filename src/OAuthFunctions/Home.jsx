@@ -84,7 +84,7 @@ function Home() {
     const code = params.get("code");
     const state = params.get("state");
 
-    window.history.replaceState({}, document.title, window.location.pathname);
+    //window.history.replaceState({}, document.title, window.location.pathname);
 
     const codeVerifier = localStorage.getItem("code_verifier");
 
