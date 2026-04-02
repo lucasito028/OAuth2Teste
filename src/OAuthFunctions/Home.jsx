@@ -79,31 +79,31 @@ function Home() {
   };
 
   useEffect(() => {
-  const handleAuth = async () => {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    const state = params.get("state");
+    const handleAuth = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      const state = params.get("state");
 
-    //window.history.replaceState({}, document.title, window.location.pathname);
+      //window.history.replaceState({}, document.title, window.location.pathname);
 
-    const codeVerifier = localStorage.getItem("code_verifier");
+      const codeVerifier = localStorage.getItem("code_verifier");
 
-    if (code) {
-      if (state === "microsoft") {
-        const res = await axios.post(
-          'https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/microsoft',
-          {
-            code: code,
-            code_verifier: codeVerifier
-          }
-        );
+      if (code) {
+        if (state === "microsoft") {
+          const res = await axios.post(
+            'https://nodejs-serverless-function-express-ashy-nine-70.vercel.app/api/microsoft',
+            {
+              code: code,
+              code_verifier: codeVerifier
+            }
+          );
 
-        setMicrosoftRefreshToken(res.data.refresh_token); 
+          setMicrosoftRefreshToken(res.data.refresh_token); 
+        }
       }
-    }
-  };
+    };
 
-  handleAuth();
+    handleAuth();
   }, []);
   
 
