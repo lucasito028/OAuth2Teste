@@ -70,7 +70,7 @@ function Home() {
       identity_provider: "Google",
       client_id: "7aqrmg5phihr9d086i7anbtpc5",
       response_type: "code",
-      scope: "openid email",
+      scope: "email",
       redirect_uri: "https://o-auth2-teste.vercel.app",
       state: "cognito"
     });
